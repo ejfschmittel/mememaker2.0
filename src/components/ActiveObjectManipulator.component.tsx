@@ -4,6 +4,7 @@ import "../styles/components/activeObjectMainpulator.styles.scss";
 import { updateCanvasObject } from "../redux/canvasObjects/canvasObjects.actions"
 import { RootState } from "../redux/store"
 import { getLineAndCharacterOfPosition } from 'typescript';
+import {DISPLAY_OBJECT_TYPES} from "../pixijs/App"
 
 
 interface Props {
@@ -167,10 +168,13 @@ const DragHandle = ({ x, y, cursor, size, container, activeObject }: DragHandleP
             const newHeight = y !== .5 ? Math.max(m(y) * mouseY - m(y) * anchorY, 30) : activeObject.height;
 
             // resize function for open resize
-            //const newWidth = x !== .5 ? Math.max(m(x) * mouseX - m(x) * anchorX, 30) : activeObject.width;
+            const freeNewWidth = x !== .5 ? Math.max(m(x) * mouseX - m(x) * anchorX, 30) : activeObject.width;
 
             // (newHeight / activeObject.height) activeObject.width 
-            const newWidth = x !== .5 ? (newHeight / activeObject.height) * activeObject.width: activeObject.width;
+            const lockedNewWidth = x !== .5 ? (newHeight / activeObject.height) * activeObject.width: activeObject.width;
+
+            let newWidth = y == .5 ? freeNewWidth : lockedNewWidth;
+            if(activeObject.type == DISPLAY_OBJECT_TYPES.TEXT_OBJECT) newWidth = freeNewWidth;
 
 
             const newY = y !== .5 ? anchorY - (1 - y) * newHeight : activeObject.y;
