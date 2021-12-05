@@ -16,10 +16,12 @@ const initalState: State = {
 const canvasObjectReducer = (state=initalState, action:any) => {
     switch(action.type){
         case types.CREATE_CANVAS_OBJECT:
+            console.log("create canvas object")
+            console.log(state.objectsList)
             return {
                 ...state,
                 objects: {...state.objects, [action.canvasObject.id]: action.canvasObject},
-                objectList: [...state.objectsList, action.canvasObject.id],
+                objectsList: [...state.objectsList, action.canvasObject.id],
                 activeObject: action.canvasObject.id,
             };
 

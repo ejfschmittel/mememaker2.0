@@ -22,21 +22,23 @@ export const createDisplayObject = (object) => {
 
         displayObject.interactive = true;
         displayObject.buttonMode = true;
+        displayObject.zIndex = 5;
 
         const onClick = (event) => {
             console.log("on item click!!!")
+            console.log(object.id)
             store.dispatch(setActiveObject(object.id))   
         } 
 
-        // add click listener
-        displayObject
-            .on("mouseDown", onClick)
-            .on("touchstart", onClick)
+        displayObject    // events for drag start
+        .on('mousedown', onClick)
+        .on('touchstart', onClick)
 
         // add to stage
         app.stage.addChild(displayObject)
 
         displayObjects[object.id] = displayObject
+        console.log(displayObjects)
         return displayObject
     }
     return null;
@@ -82,17 +84,11 @@ const removeDisplayObject = (id) => {
 
 
 
-const addNewObjects = ({objects, objectList, activeObject}) => {
-    objectList.forEach(objID => {
-        if(!displayObjectExists(objID)){    
-            const objSettings = objects[objID]
-            createDisplayObject(objSettings)
-        }
-    });
-}
 
-const updateObjects = ({objects, objectList, activeObject}) => {
-    objectList.forEach(objID => {
+
+const updateObjects = ({objects, objectsList, activeObject}) => {
+    objectsList.forEach(objID => {
+        console.log(objID)
         if(displayObjectExists(objID)){    
             const objSettings = objects[objID]
             const pixiElement = displayObjects[objID]
@@ -104,6 +100,8 @@ const updateObjects = ({objects, objectList, activeObject}) => {
 
 const render = () => {
     const {canvasObjects} = store.getState();
+
+    console.log(canvasObjects)
     // add new objects
    // addNewObjects(canvasObjects)
 
