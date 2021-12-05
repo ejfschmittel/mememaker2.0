@@ -2,6 +2,7 @@ import * as PIXI from "pixi.js";
 
 import store from "../redux/store"
 import TextObject from "./TextObject"
+import ImageObject from "./ImageObject";
 import {updateCanvasObject, setActiveObject} from "../redux/canvasObjects/canvasObjects.actions"
 
 let app;
@@ -14,11 +15,11 @@ export const DISPLAY_OBJECT_TYPES = {
 
 
 
-export const createDisplayObject = (object) => {
+export const createDisplayObject = async (object) => {
    
     if(object && object.id && !displayObjectExists(object.id)){
         // create object 
-        const displayObject = getNewDisplayObject(object);
+        const displayObject = await getNewDisplayObject(object);
 
         displayObject.interactive = true;
         displayObject.buttonMode = true;
@@ -45,25 +46,26 @@ export const createDisplayObject = (object) => {
 }
 
 
-const getNewDisplayObject = (object) => {
+const getNewDisplayObject = async (object) => {
     switch(object.type){
         case DISPLAY_OBJECT_TYPES.IMAGE_OBJECT:
             return createImageObject(object);
-        case DISPLAY_OBJECT_TYPES.TEXT_OBJECT:
-            const textObj = creatTextObject(object);
-            
-            return textObj
+        case DISPLAY_OBJECT_TYPES.TEXT_OBJECT:  
+            return await creatTextObject(object); 
         default:
             return null;
     }
 }
 
 
-const createImageObject = () => {
-    return null;
+
+const createImageObject = async (object) => {
+    const imageObject = new ImageObject(object)
+    await imageObject.hasLoaded();
+    return imageObject;
 }
 
-const creatTextObject = (object) =>  new TextObject(object)
+const creatTextObject = async (object) => new TextObject(object)
 
 
 const displayObjectExists = (id) => {

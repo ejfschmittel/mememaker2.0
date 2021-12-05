@@ -9,7 +9,12 @@ export interface CanvasObjectBase {
     height: number,
 }
 
-export interface ImageCanvasObject extends CanvasObjectBase{}
+export interface ImageCanvasObject extends CanvasObjectBase{
+    src: object,
+    sprite?: any,
+    ogImgWidth?: number,
+    ogImgHeight?: number,
+}
 
 export interface TextCanvasObject extends CanvasObjectBase{
     fontSize: number,

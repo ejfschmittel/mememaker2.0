@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {createCanvasText} from "./redux/canvasObjects/canvasObjects.actions"
+import {createCanvasText, createCanvasObject, createCanvasImage} from "./redux/canvasObjects/canvasObjects.actions"
+import {loadImage} from "./utils/image.utils"
 
 import './App.css';
 import CanvasArea from "./components/CanvasArea.component"
@@ -9,18 +10,28 @@ function App() {
 
   const dispatch = useDispatch()
 
+  const [image,setImage] = useState<HTMLImageElement | null>(null)
+
   const onCreateText = () => {
-
-
-
-    dispatch(createCanvasText({
-      text: "some longer text",
-      x: 100,
-      y: 100,
-    }))
+    if(image){
+        dispatch(createCanvasImage({
+          src: image.src,
+          x: 100,
+          y: 100,
+        }))
+    }
    
   }
 
+  
+
+
+  const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if(e.target.files){
+      const loadedImage = await loadImage(e.target.files[0])
+      setImage(loadedImage)
+    }
+  }
 
   return (
     <div className="App">
@@ -32,7 +43,8 @@ function App() {
       }}>
         <CanvasArea></CanvasArea>
 
-        <button onClick={onCreateText}>add Text</button>
+        <input type="file" accept="image/*"   name="image"  onChange={onChange}  />
+        <button onClick={onCreateText}>add Image</button>
       </div>
     </div>
   );
