@@ -165,7 +165,10 @@ const DragHandle = ({ x, y, cursor, size, container, activeObject }: DragHandleP
 
             // todo: calculate widht based on height to lock sides
             const newHeight = y !== .5 ? Math.max(m(y) * mouseY - m(y) * anchorY, 30) : activeObject.height;
-            const newWidth = x !== .5 ? Math.max(m(x) * mouseX - m(x) * anchorX, 30) : activeObject.width;
+            //const newWidth = x !== .5 ? Math.max(m(x) * mouseX - m(x) * anchorX, 30) : activeObject.width;
+
+            // (newHeight / activeObject.height) activeObject.width 
+            const newWidth = x !== .5 ? (newHeight / activeObject.height) * activeObject.width: activeObject.width;
 
 
             const newY = y !== .5 ? anchorY - (1 - y) * newHeight : activeObject.y;
