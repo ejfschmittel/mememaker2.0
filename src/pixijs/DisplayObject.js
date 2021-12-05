@@ -37,8 +37,6 @@ class DisplayObject extends PIXI.Container{
     // update x, y and rotation (check update)
     updateBaseProperties = (object) => {
 
-        console.log("update object")
-        console.log(object)
         this.x = object.x;
         this.y = object.y;
     }

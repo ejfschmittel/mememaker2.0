@@ -15,12 +15,18 @@ class TextObject extends DisplayObject{
         this.background.drawRect(0,0,this.text.width, this.text.height);
         this.background.endFill()
 
+        this.mask = this.background;
         this.addChild(this.background, this.text);
     }
 
      // update custom properties (includes width, height)
      updateObject = (object) => {
-    
+         console.log("test")
+         this.text.style.wordWrap = true;
+        this.text.style.wordWrapWidth = object.width;
+       
+        this.background.width = object.width;
+        this.background.height = object.height;
      }   
 }
 

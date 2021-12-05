@@ -40,9 +40,6 @@ const ActiveObjectManipulator = ({ container }: Props) => {
 
         if (dragging && container) {
             const bounds = container.current.getBoundingClientRect();
-            console.log(bounds.height)
-
-
 
             const correctedX = e.clientX - bounds.x - startCoords.x;
             const correctedY = e.clientY - bounds.y - startCoords.y;
@@ -170,14 +167,9 @@ const DragHandle = ({ x, y, cursor, size, container, activeObject }: DragHandleP
             const newHeight = y !== .5 ? Math.max(m(y) * mouseY - m(y) * anchorY, 30) : activeObject.height;
             const newWidth = x !== .5 ? Math.max(m(x) * mouseX - m(x) * anchorX, 30) : activeObject.width;
 
-            // 0 or 1
-            console.log("active object")
-            console.log(x + " " + y);
-            console.log(activeObject)
+
             const newY = y !== .5 ? anchorY - (1 - y) * newHeight : activeObject.y;
             const newX = x !== .5 ? anchorX - (1 - x) * newWidth : activeObject.x;
-
-            console.log(newX, newY)
 
             dispatch(updateCanvasObject(activeObject.id, {
                 x: newX,
