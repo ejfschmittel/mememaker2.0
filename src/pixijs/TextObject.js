@@ -20,12 +20,7 @@ class TextObject extends DisplayObject{
 
      // update custom properties (includes width, height)
      updateObject = (object) => {
-        console.log("update object")
-        console.log(object)
-        this.text.style.wordWrapWidth = 50;
-
-        this.background.width = object.width;
-        this.background.height = object.height;
+    
      }   
 }
 

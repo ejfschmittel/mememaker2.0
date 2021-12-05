@@ -85,26 +85,26 @@ const ActiveObjectManipulator = ({ container }: Props) => {
             width: activeObj ? `${activeObj.width + PADDING}px` : 100,
             height: activeObj ? `${activeObj.height + PADDING}px` : 100,
         }}
-           
+
         >
 
             <div className="active-object__content"
-                 onPointerDown={onDragStart}
-                 onPointerUp={onDragFinish}
+                onPointerDown={onDragStart}
+                onPointerUp={onDragFinish}
             ></div>
-           
-
-           <DragHandle x={0} y={0} size={HANDLE_SIZE} cursor="ne-resize" container={container}  activeObject={activeObj}/>
-           <DragHandle x={.5} y={0} size={HANDLE_SIZE} cursor="ne-resize" container={container} activeObject={activeObj}/>
-           <DragHandle x={1} y={0} size={HANDLE_SIZE} cursor="ne-resize" container={container} activeObject={activeObj}/>
-           <DragHandle x={1} y={.5} size={HANDLE_SIZE} cursor="ne-resize" container={container} activeObject={activeObj}/>
-           <DragHandle x={1} y={1} size={HANDLE_SIZE} cursor="ne-resize" container={container} activeObject={activeObj}/>
-           <DragHandle x={.5} y={1} size={HANDLE_SIZE} cursor="ne-resize" container={container} activeObject={activeObj}/>
-           <DragHandle x={0} y={1} size={HANDLE_SIZE} cursor="ne-resize" container={container} activeObject={activeObj}/>
-           <DragHandle x={0} y={.5} size={HANDLE_SIZE} cursor="ne-resize" container={container} activeObject={activeObj}/>
 
 
-           
+            <DragHandle x={0} y={0} size={HANDLE_SIZE} cursor="nw-resize" container={container} activeObject={activeObj} />
+            <DragHandle x={.5} y={0} size={HANDLE_SIZE} cursor="n-resize" container={container} activeObject={activeObj} />
+            <DragHandle x={1} y={0} size={HANDLE_SIZE} cursor="ne-resize" container={container} activeObject={activeObj} />
+            <DragHandle x={1} y={.5} size={HANDLE_SIZE} cursor="e-resize" container={container} activeObject={activeObj} />
+            <DragHandle x={1} y={1} size={HANDLE_SIZE} cursor="se-resize" container={container} activeObject={activeObj} />
+            <DragHandle x={.5} y={1} size={HANDLE_SIZE} cursor="s-resize" container={container} activeObject={activeObj} />
+            <DragHandle x={0} y={1} size={HANDLE_SIZE} cursor="sw-resize" container={container} activeObject={activeObj} />
+            <DragHandle x={0} y={.5} size={HANDLE_SIZE} cursor="w-resize" container={container} activeObject={activeObj} />
+
+
+
 
 
         </div>
@@ -122,9 +122,9 @@ interface DragHandleProps {
 }
 
 
- 
 
-const DragHandle = ({x,y, cursor, size, container, activeObject}: DragHandleProps) => {
+
+const DragHandle = ({ x, y, cursor, size, container, activeObject }: DragHandleProps) => {
     const [dragging, setDragging] = useState(false)
     const dispatch = useDispatch()
 
@@ -149,30 +149,35 @@ const DragHandle = ({x,y, cursor, size, container, activeObject}: DragHandleProp
 
     const onMouseMove = (e: MouseEvent) => {
         if (dragging && container) {
-  
+
             // mouse pos
             const bounds = container.current.getBoundingClientRect();
             const mouseX = e.clientX - bounds.x;
             const mouseY = e.clientY - bounds.y;
-            
+
             // rect point
             const dragX = activeObject.x + activeObject.width * x;
             const dragY = activeObject.y + activeObject.height * y;
 
             // anchor point
-            const anchorX = activeObject.x + activeObject.width * (1-x)
-            const anchorY = activeObject.y + activeObject.height * (1-y)
+            const anchorX = activeObject.x + activeObject.width * (1 - x)
+            const anchorY = activeObject.y + activeObject.height * (1 - y)
 
             // y = 0 => -1 * 100 + 200 => 100
-            const m = (num:number) => num == 1 ? 1 : -1; 
+            const m = (num: number) => num == 1 ? 1 : -1;
 
             // todo: calculate widht based on height to lock sides
-            const newHeight = y !== .5 ? Math.max(m(y) * mouseY - m(y) * anchorY, 30) : activeObject.height; 
+            const newHeight = y !== .5 ? Math.max(m(y) * mouseY - m(y) * anchorY, 30) : activeObject.height;
             const newWidth = x !== .5 ? Math.max(m(x) * mouseX - m(x) * anchorX, 30) : activeObject.width;
 
             // 0 or 1
-            const newY  = y !== .5 ? anchorY - (1-y) *  newHeight : activeObject.x;
-            const newX  = x !== .5 ? anchorX - (1 - x) * newWidth : activeObject.y;
+            console.log("active object")
+            console.log(x + " " + y);
+            console.log(activeObject)
+            const newY = y !== .5 ? anchorY - (1 - y) * newHeight : activeObject.y;
+            const newX = x !== .5 ? anchorX - (1 - x) * newWidth : activeObject.x;
+
+            console.log(newX, newY)
 
             dispatch(updateCanvasObject(activeObject.id, {
                 x: newX,
@@ -197,7 +202,7 @@ const DragHandle = ({x,y, cursor, size, container, activeObject}: DragHandleProp
                 left: x == 0 ? offset : x == .5 ? `50%` : undefined,
                 bottom: y == 1 ? offset : undefined,
                 right: x == 1 ? offset : undefined,
-                transform: x === .5 ? `translate(-50%, 0)` : y === .5 ? 'translate(0,-50%)' : undefined    
+                transform: x === .5 ? `translate(-50%, 0)` : y === .5 ? 'translate(0,-50%)' : undefined
             }}
         ></div>
     )
@@ -213,7 +218,7 @@ top-left: scale widht & height + update y + x
 
 fixpoint (top-right => bottom-left) => {100, 100}
 
-fixpoint + point => line 
+fixpoint + point => line
 
 dragpoint => mouse => closeset to line (orthogonale)
 
@@ -222,7 +227,7 @@ dragpoint => mouse => closeset to line (orthogonale)
 - dragpoint
 - anchor point (opposite of dragpoint)
 - mouse position ()
-- line point (closest to mouse position) 
+- line point (closest to mouse position)
 
 - clamp minsize (width,height) => 20, 20
 
@@ -233,8 +238,8 @@ dragpoint => mouse => closeset to line (orthogonale)
 
 
 => calc widht , height (distance line point => anchor point)
-=> clamp minsize (20,20???) 
-=> calc x,y => 
+=> clamp minsize (20,20???)
+=> calc x,y =>
     - .5 => keep
     - 0 => -y - x
     - 1 => keep
