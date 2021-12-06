@@ -45,8 +45,8 @@ const ActiveObjectManipulator = ({ container }: Props) => {
             const correctedX = e.clientX - bounds.x - startCoords.x;
             const correctedY = e.clientY - bounds.y - startCoords.y;
 
-            const clampedX = clamp(correctedX, 0 - activeObj.width / 2, bounds.width - activeObj.width / 2);
-            const clampedY = clamp(correctedY, 0 - activeObj.height / 2, bounds.height - activeObj.height / 2);
+            const clampedX = clamp(correctedX, 0 , bounds.width );
+            const clampedY = clamp(correctedY, 0 , bounds.height );
 
             dispatch(updateCanvasObject(activeObject, {
                 x: clampedX,
@@ -78,8 +78,8 @@ const ActiveObjectManipulator = ({ container }: Props) => {
     return (
         <div className="active-object" style={{
             display: activeObj ? "block" : "none",
-            top: activeObject ? `${activeObj.y - (PADDING / 2)}px` : 0,
-            left: activeObject ? `${activeObj.x - (PADDING / 2)}px` : 0,
+            top: activeObject ? `${activeObj.y - (PADDING / 2) - activeObj.height / 2}px` : 0,
+            left: activeObject ? `${activeObj.x - (PADDING / 2) - activeObj.width / 2}px` : 0,
             width: activeObj ? `${activeObj.width + PADDING}px` : 100,
             height: activeObj ? `${activeObj.height + PADDING}px` : 100,
         }}
@@ -102,13 +102,58 @@ const ActiveObjectManipulator = ({ container }: Props) => {
             <DragHandle x={0} y={.5} size={HANDLE_SIZE} cursor="w-resize" container={container} activeObject={activeObj} />
 
 
-
+            <RotationHandle activeObject={activeObj} container={container}/>
 
 
         </div>
     )
 }
 
+
+interface RotationHandleProps {
+    container: React.MutableRefObject<HTMLDivElement> | null,
+    activeObject: any
+}
+
+
+const RotationHandle = ({activeObject, container}: RotationHandleProps) => {
+    const [dragging, setDragging] = useState(false)
+
+    useEffect(() => {
+        document.addEventListener("mousemove", onMouseMove, false);
+        return () => document.removeEventListener("mousemove", onMouseMove, false);
+    }, [dragging]);
+
+    useEffect(() => {
+        document.addEventListener("mouseup", dragEnd, false);
+        return () => document.removeEventListener("mouseup", dragEnd, false);
+    }, [dragging]);
+
+
+    const onMouseMove = (e: MouseEvent) => {
+        if(dragging && container){
+            // mouse pos
+            const bounds = container.current.getBoundingClientRect();
+            const mouseX = e.clientX - bounds.x;
+            const mouseY = e.clientY - bounds.y;
+        }
+    }
+    
+    const onDragStart = () => {
+        setDragging(true)
+    }
+
+    const dragEnd = () => {
+        setDragging(false)
+    }
+
+    return (
+        <div 
+        className="active-object__rotation-handle"
+        onPointerDown={onDragStart} 
+         ></div>
+    )
+}
 
 interface DragHandleProps {
     x: number,
@@ -118,7 +163,6 @@ interface DragHandleProps {
     container: React.MutableRefObject<HTMLDivElement> | null,
     activeObject: any
 }
-
 
 
 
@@ -158,8 +202,10 @@ const DragHandle = ({ x, y, cursor, size, container, activeObject }: DragHandleP
             const dragY = activeObject.y + activeObject.height * y;
 
             // anchor point
-            const anchorX = activeObject.x + activeObject.width * (1 - x)
-            const anchorY = activeObject.y + activeObject.height * (1 - y)
+            const anchorX = activeObject.x  - activeObject.width / 2 + activeObject.width * (1 - x)
+            const anchorY = activeObject.y - activeObject.height / 2 + activeObject.height * (1 - y)
+
+            // 
 
             // y = 0 => -1 * 100 + 200 => 100
             const m = (num: number) => num == 1 ? 1 : -1;
@@ -177,8 +223,8 @@ const DragHandle = ({ x, y, cursor, size, container, activeObject }: DragHandleP
             if(activeObject.type == DISPLAY_OBJECT_TYPES.TEXT_OBJECT) newWidth = freeNewWidth;
 
 
-            const newY = y !== .5 ? anchorY - (1 - y) * newHeight : activeObject.y;
-            const newX = x !== .5 ? anchorX - (1 - x) * newWidth : activeObject.x;
+            const newY = y !== .5 ? anchorY - (1 - y) * newHeight / 2 : activeObject.y;
+            const newX = x !== .5 ? anchorX - (1 - x) * newWidth / 2 : activeObject.x;
 
             dispatch(updateCanvasObject(activeObject.id, {
                 x: newX,

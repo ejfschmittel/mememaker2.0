@@ -46,6 +46,10 @@ class ImageObject extends DisplayObject{
     updateObject = (object) => {
         this.sprite.width = object.width;
         this.sprite.height = object.height;
+
+        this.pivot.set(object.width / 2, object.height / 2)
+
+     
     }  
 
     getWidth = () => this.sprite.width;

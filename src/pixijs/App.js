@@ -25,6 +25,8 @@ export const createDisplayObject = async (object) => {
         displayObject.buttonMode = true;
         displayObject.zIndex = 5;
 
+        displayObject.pivot.set(displayObject.width/2, displayObject.height/2)
+
         const onClick = (event) => {
             console.log("on item click!!!")
             console.log(object.id)
