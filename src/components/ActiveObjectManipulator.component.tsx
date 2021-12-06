@@ -238,8 +238,9 @@ const DragHandle = ({ x, y, cursor, size, container, activeObject }: DragHandleP
             if(activeObject.type == DISPLAY_OBJECT_TYPES.TEXT_OBJECT) newWidth = freeNewWidth;
 
 
-            const newY = y !== .5 ? anchorY - (1 - y) * newHeight / 2 : activeObject.y;
-            const newX = x !== .5 ? anchorX - (1 - x) * newWidth / 2 : activeObject.x;
+            console.log(anchorX, anchorY)
+            const newY = y !== .5 ? anchorY + m(y) * newHeight/2 : activeObject.y;
+            const newX = x !== .5 ? anchorX + m(x) * newWidth /2: activeObject.x;
 
             dispatch(updateCanvasObject(activeObject.id, {
                 x: newX,
