@@ -82,6 +82,8 @@ const ActiveObjectManipulator = ({ container }: Props) => {
             left: activeObject ? `${activeObj.x - (PADDING / 2) - activeObj.width / 2}px` : 0,
             width: activeObj ? `${activeObj.width + PADDING}px` : 100,
             height: activeObj ? `${activeObj.height + PADDING}px` : 100,
+            transformOrigin: "center center",
+            transform: `rotate(${activeObj?.rotation || 0}rad)`
         }}
 
         >
@@ -117,6 +119,7 @@ interface RotationHandleProps {
 
 
 const RotationHandle = ({activeObject, container}: RotationHandleProps) => {
+    const dispatch = useDispatch()
     const [dragging, setDragging] = useState(false)
 
     useEffect(() => {
@@ -136,21 +139,33 @@ const RotationHandle = ({activeObject, container}: RotationHandleProps) => {
             const bounds = container.current.getBoundingClientRect();
             const mouseX = e.clientX - bounds.x;
             const mouseY = e.clientY - bounds.y;
+
+            //const rad = Math.atan2( activeObject.y - mouseY,  activeObject.x - mouseX)
+            const rad = Math.atan2(  mouseY - activeObject.y, mouseX - activeObject.x) + Math.PI / 2 
+
+           dispatch(updateCanvasObject(activeObject.id, {
+               rotation: rad
+           }))
         }
     }
     
     const onDragStart = () => {
         setDragging(true)
+        document.body.style.cursor = "grabbing" 
     }
 
     const dragEnd = () => {
         setDragging(false)
+        document.body.style.cursor = "default" 
     }
 
     return (
         <div 
         className="active-object__rotation-handle"
         onPointerDown={onDragStart} 
+        style={{
+            backgroundColor: dragging ? "red" : "#fff"
+        }}
          ></div>
     )
 }

@@ -39,6 +39,7 @@ class DisplayObject extends PIXI.Container{
 
         this.x = object.x;
         this.y = object.y;
+        this.rotation = object.rotation || 0;
     }
 
     updateObject = (object) => {}
