@@ -22,10 +22,10 @@ const CanvasArea = () => {
             console.log(bounds)
             dispatch(setCanvasDimensions(Math.round(bounds.width), Math.round(bounds.height)));
         }
-        window.addEventListener('resize', updateSize);
+       // window.addEventListener('resize', updateSize);
        
         updateSize();
-        return () => window.removeEventListener('resize', updateSize);
+        //return () => window.removeEventListener('resize', updateSize);
       }, [dispatch]);
     
 

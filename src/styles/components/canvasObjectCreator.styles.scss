@@ -1,0 +1,39 @@
+.object-creator{
+    height: 100%;
+    background: #333;
+    display: flex;
+    flex-direction: column;
+
+    &__header{
+        display: flex;
+    }
+
+    &__toggle-btn{
+        flex: 1;
+        border: none;
+        color: #fff;
+        background: #444;
+        padding: .8rem 0rem;
+        cursor: pointer;
+        font-size: 1.2rem;
+
+        &--active{
+
+        }
+
+        &:hover{
+            background: #666;
+        }
+
+        
+    }
+
+    &__toggle-btn:not(:first-child){
+        border-left: 1px solid #aaa;
+    }
+
+    &__container{
+        flex: 1;
+        padding: 1rem;
+    }
+}

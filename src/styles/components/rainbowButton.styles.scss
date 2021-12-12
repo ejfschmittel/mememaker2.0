@@ -1,0 +1,50 @@
+.rainbow-button{
+    border: 1px solid #fff;
+    display: block;
+    padding: .3rem 1rem;
+    font-size: 1.2rem;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    cursor: pointer;
+    color: #fff;
+    background: green;
+    
+
+    &--fullsize{
+        width: 100%;
+        font-size: 1.2rem;
+        padding: .6rem 1rem;
+        box-shadow: 0 .1rem .3rem rgba(0,0,0,.6);
+        border-radius: 5px;
+    }
+
+    &:hover{
+    animation:slidebg 5s linear infinite;
+    background-image:     linear-gradient(
+        to right, 
+        #E7484F,
+        #E7484F 16.65%,
+        #F68B1D 16.65%,
+        #F68B1D 33.3%,
+        #FCED00 33.3%,
+        #FCED00 49.95%,
+        #009E4F 49.95%,
+        #009E4F 66.6%,
+        #00AAC3 66.6%,
+        #00AAC3 83.25%,
+        #732982 83.25%,
+        #732982 100%,
+        #E7484F 100%
+      );
+    }
+
+    &:disabled{
+        filter: saturate(.3);
+        cursor: not-allowed;
+    }
+}
+
+@keyframes slidebg {
+    to {
+      background-position:20vw;
+    }
+  }

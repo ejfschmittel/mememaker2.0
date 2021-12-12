@@ -24,3 +24,26 @@ html, body{
         margin-right: .3rem;
     }
 }
+
+.mt{
+    margin-top: 1rem;
+
+    &--2{
+        margin-top: 2rem;
+    }
+}
+
+.p{
+    padding: 1rem;
+}
+
+.ui-panel{
+    background: #333;
+    height: 100%;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

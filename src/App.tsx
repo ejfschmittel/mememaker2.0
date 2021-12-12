@@ -7,7 +7,8 @@ import CanvasEidtorOverlay from "./components/CanvasEditorOverlay"
 import Menu from "./components/Menu.compoent"
 import './App.css';
 import CanvasArea from "./components/CanvasArea.component"
-
+import CanvasObjectCreator from "./components/CanvasObjectCreator.component"
+import DownloadSection from "./components/DownloadSection.component"
 function App() {
 
   const dispatch = useDispatch()
@@ -60,10 +61,12 @@ function App() {
         <CanvasArea></CanvasArea>
       </div>
       <div className="layout__download">
-        <button onClick={test}>Test</button>
+        <DownloadSection />
       </div>
       <div className="layout__elements"></div>
-      <div className="layout__creator"></div>
+      <div className="layout__creator">
+        <CanvasObjectCreator />
+      </div>
       <div className="layout__editor"></div>
     </div>
   );

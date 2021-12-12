@@ -6,7 +6,7 @@ import ImageObject from "./ImageObject";
 import BackgroundImage from "./BackgroundImage"
 import {updateCanvasObject, setActiveObject} from "../redux/canvasObjects/canvasObjects.actions"
 
-let app;
+export let app;
 let background;
 const displayObjects = {} 
 
