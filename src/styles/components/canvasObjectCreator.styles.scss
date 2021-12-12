@@ -18,10 +18,15 @@
         font-size: 1.2rem;
 
         &--active{
-
+           
+            background: #333;
         }
 
         &:hover{
+            background: #222;
+        }
+
+        &:active{
             background: #666;
         }
 
