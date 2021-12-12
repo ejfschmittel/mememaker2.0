@@ -16,7 +16,9 @@
         outline: none;
         box-shadow: inset 0 0 .2rem rgba(0,0,0,.5);
 
-
+        &::placeholder{
+            color: #eee;
+        }
     }
 
     &__button{

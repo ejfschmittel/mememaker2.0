@@ -32,6 +32,7 @@ class TextObject extends DisplayObject{
         this.text.style.fill = object.color ? PIXI.utils.string2hex(object.color) : 0x000000;
         this.text.style.stroke = object.borderColor ? PIXI.utils.string2hex(object.borderColor) : 0x000000;
         this.text.style.strokeThickness = object?.borderWidth || 0;
+        this.text.style.fontSize = object?.fontSize || 32;
 
         this.pivot.set(object.width / 2, object.height / 2)
      }   

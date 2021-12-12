@@ -27,7 +27,7 @@ const CanvasTextCreator = () => {
         <div className="text-creator">
 
             <div className="text-creator__input-container">
-                <textarea className="text-creator__input" value={text} onChange={onChange} />
+                <textarea className="text-creator__input" value={text} onChange={onChange} placeholder="Write Text..."/>
             </div>
 
 

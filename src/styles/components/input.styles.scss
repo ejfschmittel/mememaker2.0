@@ -1,0 +1,33 @@
+.input{
+    flex: 1;
+    display: flex;
+    background: #666;
+    border-radius: 3px;
+    padding: .2rem .5rem;
+    align-items: baseline;
+    width: 50%;
+   
+
+    &__label{
+        margin-right: 1rem;
+        display: block;
+    }
+
+    &__input{   
+        flex: 1;
+        margin-right: 5px;
+        color: #fff;
+        background: transparent;
+        border: none;
+        outline: none;
+        min-width: 1px;
+        display: block;
+        background: #777;
+        padding: .2rem .3rem
+    }
+
+    &__type{
+
+    }
+}
+

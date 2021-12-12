@@ -10,7 +10,7 @@ import ImageInput from './ImageInput.component';
 const CanvasTextCreator = () => {
     const dispatch = useDispatch()
     const dimensions = useSelector((state: RootState) => state.canvas.dimensions)
-    const [image, setImage] = useState<HTMLImageElement | null>(null)
+    const [image, setImage] = useState<HTMLImageElement | undefined>(undefined)
     
    
 

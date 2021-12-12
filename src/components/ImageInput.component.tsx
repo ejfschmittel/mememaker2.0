@@ -2,9 +2,14 @@ import React from 'react'
 import "../styles/components/imageInput.styles.scss"
 import {FaImage} from "react-icons/fa"
 
+interface Props {
+    image?: HTMLImageElement,
+    onChange?: any
+}
 
-const ImageInput = ({image, onChange}) => {
-    const src = image ? image.src : null;
+
+const ImageInput = ({image, onChange}: Props) => {
+    const src = image ? image.src : undefined;
 
     return (
         <label className="image-input">

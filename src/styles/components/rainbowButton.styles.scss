@@ -41,6 +41,11 @@
         filter: saturate(.3);
         cursor: not-allowed;
     }
+
+    &:hover:disabled{
+      background-image: none;
+      animation: none;
+    }
 }
 
 @keyframes slidebg {

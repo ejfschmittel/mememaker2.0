@@ -1,0 +1,18 @@
+.editor{
+    padding: 1rem;
+    color: #fff;
+
+    width: 100%;
+    max-width: 360px;
+
+    &__row{
+        display: flex;
+        width: 100%;
+      
+
+        & > *:not(:first-child){
+            margin-left: 1rem;
+        }
+        margin-bottom: 1rem;
+    }
+}
