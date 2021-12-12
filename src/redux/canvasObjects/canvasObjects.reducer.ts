@@ -1,4 +1,5 @@
 
+import { type } from "os";
 import types from "./canvasObjects.types";
 
 interface State {
@@ -40,6 +41,20 @@ const canvasObjectReducer = (state=initalState, action:any) => {
                         ...action.canvasObject,
                     }
                 }
+            }
+
+        case types.DELETE_CANVAS_OBJECT:
+            return {
+                ...state,
+                objects: {
+                    ...state.objects,
+                    [action.payload]: {
+                        ...state.objects[action.payload],
+                        deleted: true,
+                    }
+                },
+                activeObject: state.activeObject == action.payload ? null : state.activeObject,
+                objectsList: state.objectsList.filter((id) => id !== action.payload),
             }
         default:
             return state;

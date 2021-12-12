@@ -37,7 +37,7 @@ const canvasReducer = (state=initalState, action:any) => {
             return {...state, dimensions: action.payload }
 
         case types.SET_BACKGROUND_IMAGE:
-            return {...state, dimensions: {width: action.payload.width, height: action.payload.height}, backgroundImage: action.payload.image}
+            return {...state, dimensions: {width: action.payload.width, height: action.payload.height}, backgroundImage: action.payload.image, showChoseBackgroundOverlay: false}
 
         case types.SET_CANVAS_MAX_DIMENSIONS:
             return {...state, maxDimensions: action.payload }

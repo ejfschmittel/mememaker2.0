@@ -75,7 +75,7 @@ export const createCanvasImage = (options: any) => async (dispatch:AppDispatch) 
 export const deleteCanvasObject = (id: string) => {
     return {
         type: types.DELETE_CANVAS_OBJECT,
-        id,
+        payload: id,
     }
 }
 

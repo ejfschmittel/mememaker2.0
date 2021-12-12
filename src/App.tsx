@@ -10,6 +10,8 @@ import CanvasArea from "./components/CanvasArea.component"
 import CanvasObjectCreator from "./components/CanvasObjectCreator.component"
 import DownloadSection from "./components/DownloadSection.component"
 import ActiveObjectEditor from "./components/ActiveObjectEditor.component"
+import CanvasObjectList from "./components/CanvasObjectList.component"
+import OpenCanvasEditorSection from "./components/OpenCanvasEditor.component"
 function App() {
 
   const dispatch = useDispatch()
@@ -56,15 +58,17 @@ function App() {
     <div className="App layout">
       <CanvasEidtorOverlay />
       <div className="layout__info">
-        <Menu />
+        <OpenCanvasEditorSection />
       </div>
       <div className="layout__canvas">
-        <CanvasArea></CanvasArea>
+        <CanvasArea />
       </div>
       <div className="layout__download">
         <DownloadSection />
       </div>
-      <div className="layout__elements"></div>
+      <div className="layout__elements">
+        <CanvasObjectList />
+      </div>
       <div className="layout__creator">
         <CanvasObjectCreator />
       </div>

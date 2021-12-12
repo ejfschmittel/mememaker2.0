@@ -123,6 +123,12 @@ const rerenderCanvasSize = () => {
 
 */
 
+const removeObject = (id) => {
+    const element = displayObjects[id]
+    app.stage.removeChild(element)
+    displayObjects[id] = null
+}
+
 
 const render = () => {
     if(app) {
@@ -132,6 +138,12 @@ const render = () => {
     // resize canvas 
     const {dimensions} = canvas;
     resizeCanvas(dimensions.width, dimensions.height)
+
+     // clear deleted objects = 
+     Object.keys(canvasObjects.objects).map((id) => {
+        const object = canvasObjects.objects[id];
+        if(object.deleted) removeObject(id)
+    })
 
     // update background image
     background.update(canvas)
@@ -154,6 +166,8 @@ export const init = (container) => {
     app = new PIXI.Application({
        backgroundColor: 0xffffff, resolution: 1, preserveDrawingBuffer: true
     });
+
+    
 
     container.appendChild(app.view)  
     app.stage.sortableChildren = true; 

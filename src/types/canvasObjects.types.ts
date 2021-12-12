@@ -2,6 +2,7 @@
 
 export interface CanvasObjectBase {
     id: string,
+    type: string,
     x: number,
     y: number,
     rotation: number,
@@ -17,6 +18,7 @@ export interface ImageCanvasObject extends CanvasObjectBase{
 }
 
 export interface TextCanvasObject extends CanvasObjectBase{
+    text: string,
     fontSize: number,
     color: string,
     borderColor: string,

@@ -23,6 +23,7 @@
     &__elements{
         grid-area: elements;
         background: #ddd;
+        overflow-y: auto;
     }
 
     &__creator{
