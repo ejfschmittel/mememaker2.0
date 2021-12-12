@@ -21,10 +21,17 @@ class TextObject extends DisplayObject{
 
      // update custom properties (includes width, height)
      updateObject = (object) => {
-         this.text.style.wordWrap = true;
+
+        // handle text dimensions
+        this.text.style.wordWrap = true;
         this.text.style.wordWrapWidth = object.width;    
         this.background.width = object.width;
         this.background.height = object.height;
+
+        // handle text styleing
+        this.text.style.fill = object.color ? PIXI.utils.string2hex(object.color) : 0x000000;
+        this.text.style.stroke = object.borderColor ? PIXI.utils.string2hex(object.borderColor) : 0x000000;
+        this.text.style.strokeThickness = object?.borderWidth || 0;
 
         this.pivot.set(object.width / 2, object.height / 2)
      }   

@@ -18,8 +18,8 @@ export interface ImageCanvasObject extends CanvasObjectBase{
 
 export interface TextCanvasObject extends CanvasObjectBase{
     fontSize: number,
-    tint: string,
-    borderTint: string,
+    color: string,
+    borderColor: string,
     borderWidth: number,
 }
 

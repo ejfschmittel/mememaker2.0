@@ -9,6 +9,7 @@ import './App.css';
 import CanvasArea from "./components/CanvasArea.component"
 import CanvasObjectCreator from "./components/CanvasObjectCreator.component"
 import DownloadSection from "./components/DownloadSection.component"
+import ActiveObjectEditor from "./components/ActiveObjectEditor.component"
 function App() {
 
   const dispatch = useDispatch()
@@ -67,7 +68,9 @@ function App() {
       <div className="layout__creator">
         <CanvasObjectCreator />
       </div>
-      <div className="layout__editor"></div>
+      <div className="layout__editor">
+        <ActiveObjectEditor />
+      </div>
     </div>
   );
 }

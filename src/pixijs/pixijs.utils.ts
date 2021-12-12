@@ -7,7 +7,9 @@ export const createTextCanvasObject = (object:any): TextCanvasObject => {
     // defaults
     const textObjectOptions = {
         fontSize: 32,
-        tint: 0xff0000,
+        color: "#ffffff",
+        boderColor: "#000000",
+        borderWidth: 3,
         wordWrap: true,
         x: 0,
         y: 0,
