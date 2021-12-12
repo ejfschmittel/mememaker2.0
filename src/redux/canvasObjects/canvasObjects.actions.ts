@@ -22,7 +22,7 @@ export const createCanvasText= (options: any) => async (dispatch:AppDispatch) =>
     canvasTextOptions.width = canvasText?.getWidth() || 100;
     canvasTextOptions.height = canvasText?.getHeight() || 100; 
 
-    return createCanvasObject(canvasTextOptions)
+    dispatch(createCanvasObject(canvasTextOptions))
 }
 
 export const createCanvasImage = (options: any) => async (dispatch:AppDispatch) => {

@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+#root, .App{
+    height: 100%;
+    width: 100%;
+}
+
+
+.form-input{
+    display: flex;
+    font-size: .7rem;
+    align-items: center;
+    &> *{
+        margin-right: .3rem;
+    }
+}

@@ -1,0 +1,33 @@
+.pixel-input{
+    background: #666;
+    border-radius: .3rem;
+    padding: .3rem .5rem;
+    display: flex;
+    font-size: .6rem;
+    color: #fff;
+    align-items: center;
+
+    &__input{
+        display: block;
+        border: none;
+        background: transparent;
+        color: #fff;
+        padding: 0;
+        outline: none;
+        line-height: 1rem;
+        font-size: .6rem;
+        margin-right: .3rem;
+ 
+        min-width: 0;
+
+    }
+
+    &--disabled &__input{
+        cursor: not-allowed;
+    }
+
+    &--disabled{
+        cursor: not-allowed;
+        opacity: .8;
+    }
+}

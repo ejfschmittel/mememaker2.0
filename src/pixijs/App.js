@@ -3,9 +3,11 @@ import * as PIXI from "pixi.js";
 import store from "../redux/store"
 import TextObject from "./TextObject"
 import ImageObject from "./ImageObject";
+import BackgroundImage from "./BackgroundImage"
 import {updateCanvasObject, setActiveObject} from "../redux/canvasObjects/canvasObjects.actions"
 
 let app;
+let background;
 const displayObjects = {} 
 
 export const DISPLAY_OBJECT_TYPES = {
@@ -102,10 +104,38 @@ const updateObjects = ({objects, objectsList, activeObject}) => {
 }
 
 
-const render = () => {
-    const {canvasObjects} = store.getState();
+const resizeCanvas = (width,height) => {
+    app.view.width = width;
+    app.view.height = height;
+    console.log("resize canvas")
+    app.renderer.resize(width,height);
+    //app.renderer.resize(width, height);
+}
 
-    console.log(canvasObjects)
+const rerenderCanvasSize = () => {
+
+}
+
+/*
+    fit dimensiosn of contianer
+    have given width or height
+    scale down 
+
+*/
+
+
+const render = () => {
+    if(app) {
+    const {canvasObjects, canvas} = store.getState();
+
+
+    // resize canvas 
+    const {dimensions} = canvas;
+    resizeCanvas(dimensions.width, dimensions.height)
+
+    // update background image
+    background.update(canvas)
+
     // add new objects
    // addNewObjects(canvasObjects)
 
@@ -113,7 +143,7 @@ const render = () => {
     
     // update objects
     updateObjects(canvasObjects)
-
+    }
   
 }
 
@@ -122,14 +152,16 @@ export const init = (container) => {
     if(app) return null; 
 
     app = new PIXI.Application({
-        resizeTo: container, backgroundColor: 0xffffff, resolution: 1, preserveDrawingBuffer: true
+       backgroundColor: 0xffffff, resolution: 1, preserveDrawingBuffer: true
     });
 
     container.appendChild(app.view)  
     app.stage.sortableChildren = true; 
    
-    // init canvas objects
-  
+    
+    // create canvas background
+    background = new BackgroundImage();
+    app.stage.addChild(background)
 
 }
 

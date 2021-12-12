@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {createCanvasText, createCanvasObject, createCanvasImage} from "./redux/canvasObjects/canvasObjects.actions"
+import {setCanvasDimensions} from "./redux/canvas/canavs.actions"
 import {loadImage} from "./utils/image.utils"
-
+import CanvasEidtorOverlay from "./components/CanvasEditorOverlay"
+import Menu from "./components/Menu.compoent"
 import './App.css';
 import CanvasArea from "./components/CanvasArea.component"
 
@@ -12,7 +14,7 @@ function App() {
 
   const [image,setImage] = useState<HTMLImageElement | null>(null)
 
-  const onCreateText = () => {
+  const onCreateImage = () => {
     if(image){
         dispatch(createCanvasImage({
           src: image.src,
@@ -21,6 +23,21 @@ function App() {
         }))
     }
    
+  }
+
+  const onCreateText = () => {
+
+        dispatch(createCanvasText({
+          text: "Arne ist blöd",
+          x: 100,
+          y: 100,
+        }))
+  
+   
+  }
+
+  const test = () => {
+    dispatch(setCanvasDimensions(600,400))
   }
 
   
@@ -34,18 +51,20 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div style={{
-        width: "80%",
-        margin: "10px auto",
-        height: "60vh",
-        background: "#eee"
-      }}>
-        <CanvasArea></CanvasArea>
-
-        <input type="file" accept="image/*"   name="image"  onChange={onChange}  />
-        <button onClick={onCreateText}>add Image</button>
+    <div className="App layout">
+      <CanvasEidtorOverlay />
+      <div className="layout__info">
+        <Menu />
       </div>
+      <div className="layout__canvas">
+        <CanvasArea></CanvasArea>
+      </div>
+      <div className="layout__download">
+        <button onClick={test}>Test</button>
+      </div>
+      <div className="layout__elements"></div>
+      <div className="layout__creator"></div>
+      <div className="layout__editor"></div>
     </div>
   );
 }

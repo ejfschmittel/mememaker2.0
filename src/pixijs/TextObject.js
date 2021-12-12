@@ -25,6 +25,8 @@ class TextObject extends DisplayObject{
         this.text.style.wordWrapWidth = object.width;    
         this.background.width = object.width;
         this.background.height = object.height;
+
+        this.pivot.set(object.width / 2, object.height / 2)
      }   
 }
 
