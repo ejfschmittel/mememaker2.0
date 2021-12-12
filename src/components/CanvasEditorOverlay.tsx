@@ -7,41 +7,12 @@ import { RootState } from "../redux/store"
 import {loadImageFromURL} from "../utils/image.utils"
 import PixelInput from "./PixelInput.component";
 
+import useCanvasLimiter from "../hooks/useCanvasLimiter"
+
 import { MEME_TEMPLATES, getTemplatePath } from "../data/templates"
 
 
-const useCanvasLimiter = () => {
-    const {width: maxWidth,height:maxHeight} = useSelector((state:RootState) => state.canvas.maxDimensions)
-    
-    // return maxWidht,maxHeight, size 
 
-    // independent 
-    const limit = (width: number, height: number) => {
-
-        console.log(maxWidth, maxHeight)
-        // check width
-        if(width > maxWidth){
-            height = (maxWidth / width) * height;
-            width = maxWidth;          
-        }
-       
-        // check height
-        if(height > maxHeight){
-            console.log("fix height")
-            width = (maxHeight / height) * width;
-            height = maxHeight;
-        }
-
-        return {
-            width: Math.round(width),
-            height: Math.round(height)
-        }
-    }
-
-    
-
-    return {limit, maxWidth, maxHeight}
-}
 
 const CanvasEditorOverlay = () => {
     const dispatch = useDispatch();

@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import "../styles/components/canvasTextCreator.styles.scss";
 import RainbowButton from "./RainbowButton.component"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createCanvasImage } from "../redux/canvasObjects/canvasObjects.actions"
 import {loadImage} from "../utils/image.utils"
+import { RootState } from '../redux/store';
 
 import ImageInput from './ImageInput.component';
 const CanvasTextCreator = () => {
     const dispatch = useDispatch()
+    const dimensions = useSelector((state: RootState) => state.canvas.dimensions)
     const [image, setImage] = useState<HTMLImageElement | null>(null)
     
    
@@ -29,6 +31,8 @@ const CanvasTextCreator = () => {
         if(image){
             dispatch(createCanvasImage({
                 src: image.src,
+                x: Math.round(dimensions.width / 2),
+                y: Math.round(dimensions.height / 2),
             }))
         }
     }

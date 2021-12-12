@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 import "../styles/components/canvasTextCreator.styles.scss";
 import RainbowButton from "./RainbowButton.component"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { createCanvasText } from "../redux/canvasObjects/canvasObjects.actions"
-
+import { RootState } from '../redux/store';
 
 const CanvasTextCreator = () => {
-    const [text, setText] = useState("")
-
     const dispatch = useDispatch()
+    const dimensions = useSelector((state: RootState) => state.canvas.dimensions)
+    const [text, setText] = useState("")
 
     const createText = () => {
         dispatch(createCanvasText({
             text,
-            x: 0,
-            y: 0,
+            x: Math.round(dimensions.width / 2),
+            y: Math.round(dimensions.height / 2),
         }))
     }
 

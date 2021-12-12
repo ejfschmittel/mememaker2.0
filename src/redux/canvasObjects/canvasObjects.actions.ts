@@ -2,7 +2,7 @@ import types from "./canvasObjects.types"
 import {CanvasObject} from "../../types/canvasObjects.types"
 import {createTextCanvasObject, createImageCanvasObject} from "../../pixijs/pixijs.utils"
 import {createDisplayObject} from "../../pixijs/App"
-import {AppDispatch} from "../store"
+import store, {AppDispatch, RootState} from "../store"
 
 export const createCanvasObject = (canvasObject: CanvasObject) => {
     return {
@@ -25,16 +25,49 @@ export const createCanvasText= (options: any) => async (dispatch:AppDispatch) =>
     dispatch(createCanvasObject(canvasTextOptions))
 }
 
+
+interface Dimension {
+    width: number,
+    height: number
+}
+
+
+const limitWithFixedRatio = (dimensions:Dimension, maxDimensions: Dimension) => {
+    let width = dimensions.width;
+    let height = dimensions.height;
+    if(width > maxDimensions.width){
+        height = (maxDimensions.width / width) * height;
+        width = maxDimensions.width; 
+    }
+
+    if(height > maxDimensions.height){
+        width = (maxDimensions.height / height) * width;
+        height = maxDimensions.height; 
+    }
+
+    return {
+        width, 
+        height
+    }
+}
+
 export const createCanvasImage = (options: any) => async (dispatch:AppDispatch) => {
     const canvasImageOptions = createImageCanvasObject(options)
     const canvasImage = await createDisplayObject(canvasImageOptions)
 
-    console.log("sadfasdf")
-    console.log(canvasImage)
 
-    // get width & height
-    canvasImageOptions.width = canvasImage?.getWidth() || 100;
-    canvasImageOptions.height = canvasImage?.getHeight() ||   100; 
+    const imageWidth = canvasImage?.getWidth() || 100;
+    const imageHeight = canvasImage?.getHeight() ||   100; 
+
+    // scale image down?
+    const state = store.getState();
+    const maxDimensions = state.canvas.dimensions;
+    const {width, height} = limitWithFixedRatio({width: imageWidth, height: imageHeight},{width: maxDimensions.width /2, height: maxDimensions.height/2})
+
+    console.log(width, height)
+
+    canvasImageOptions.width = width;
+    canvasImageOptions.height = height
 
     dispatch(createCanvasObject(canvasImageOptions))
 }
