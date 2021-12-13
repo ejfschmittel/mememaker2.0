@@ -1,0 +1,64 @@
+.image-creator{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__face-extractor{
+        flex: 1;
+        background: #222;
+        color: #fff;
+        margin: 1rem 0;
+        padding: .3rem .5rem;
+        border-radius: 5px;
+        border: 1px solid #aaa;
+        min-height: 10rem;
+        
+    }
+
+    &__status{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #aaa;
+        padding: .2rem 0;
+    }
+
+    &__canvas{
+        display: none;
+    }
+
+    &__face-list{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, mimax(80px, 160px));
+    }
+
+    &__face-item{
+        height: 100px;
+        background: #aaa;
+        border-radius: 5px;
+        overflow: hidden;
+
+        img{
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+        &::after{
+            content: "Add to Canvas";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            transition: all .3s;
+            opacity: 0;
+        }
+
+       
+    }
+}

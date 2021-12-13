@@ -16,3 +16,12 @@ export const loadImageFromURL = async (imageURL: string):Promise<HTMLImageElemen
         img.src  =  imageURL  
     })
 }
+
+
+export const canvasToBlob = async (canvas: HTMLCanvasElement) => {
+    return new Promise((resolve, reject) => {
+        canvas.toBlob((blob) => {
+            resolve(blob)
+        })
+    })
+}

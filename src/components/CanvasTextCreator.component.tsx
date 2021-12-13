@@ -9,6 +9,7 @@ const CanvasTextCreator = () => {
     const dispatch = useDispatch()
     const dimensions = useSelector((state: RootState) => state.canvas.dimensions)
     const [text, setText] = useState("")
+    
 
     const createText = () => {
         dispatch(createCanvasText({
@@ -31,7 +32,7 @@ const CanvasTextCreator = () => {
             </div>
 
 
-            <RainbowButton className="rainbow-button--fullsize mt" onClick={createText}>
+            <RainbowButton className="rainbow-button--fullsize mt" onClick={createText} disabled={!text}>
                 Add Text
             </RainbowButton>
 
