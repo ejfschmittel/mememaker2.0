@@ -21,6 +21,10 @@
         align-items: center;
         border-bottom: 1px solid #aaa;
         padding: .2rem 0;
+        height: 2rem;
+        line-height: 2rem;
+        margin-bottom: .5rem;
+        position: relative;
     }
 
     &__canvas{
@@ -29,14 +33,21 @@
 
     &__face-list{
         display: grid;
-        grid-template-columns: repeat(auto-fit, mimax(80px, 160px));
+        grid-template-columns: repeat(auto-fit, max(80px, 50%));
+        overflow-y: auto;
+    }
+
+    &__time{
+        position: absolute;
+        left: 0;
     }
 
     &__face-item{
         height: 100px;
         background: #aaa;
         border-radius: 5px;
-        overflow: hidden;
+        position: relative;
+  
 
         img{
             max-height: 100%;

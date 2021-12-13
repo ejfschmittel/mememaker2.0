@@ -15,8 +15,6 @@ const getTimeSinceInSeconds = (date: Date | null) => {
 
     const delta = Math.floor((new Date().getTime() - date.getTime()) / 1000);
 
-    console.log(delta)
-
     const minutes = Math.floor(delta / 60) % 60
     const seconds = delta % 60; 
 
@@ -30,11 +28,7 @@ const CanvasTextCreator = () => {
     
     const {canvasRef, status, extractedFaces, extractFaces} = useFaceExtractor();
 
-
     const [timeDisplay, setTimeDisplay] = useState("")
-    
-
-    console.log(extractedFaces)
     useEffect(() => {
 
         const i = setInterval(() => {
@@ -45,7 +39,7 @@ const CanvasTextCreator = () => {
         return () => {
             clearInterval(i)
         } 
-    },[status])
+    },[status.time])
    
 
     const onImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,14 +89,17 @@ const CanvasTextCreator = () => {
 
             <div className="image-creator__face-extractor">
                 <div className="image-creator__status">
-                    <div>{timeDisplay}</div>
+                    <div className="image-creator__time">{timeDisplay}</div>
                     <div>{status.message}</div>
                 </div>
                 <div className="image-creator__face-list">
                     {extractedFaces.map((b: Blob) => {
+
+                        const url = window.URL.createObjectURL(b);
+
                         return (
                             <div className="image-creator__face-item">
-                               
+                               <img src={url} />
                             </div>
                         )
                     })}

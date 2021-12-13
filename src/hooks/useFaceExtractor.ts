@@ -48,11 +48,11 @@ const useFaceExtractor = () => {
     
     }
 
-    const setStatusMessage = (message: string) => {
+    const setStatusMessage = (message: string, isLoading=true) => {
         setStatus({
             message,
-            time: message ? new Date() : null,
-            isLoading: !!message
+            time: isLoading ? new Date() : null,
+            isLoading: isLoading
         })
     }
 
@@ -64,7 +64,8 @@ const useFaceExtractor = () => {
         // extract faces
         const faces = await extractFaceFromImage(image)
         setExtractedFaces(faces)
-        setStatusMessage("")
+        const message = faces.length > 0 ? "Face Extraction Successfull" : "No Faces Found";
+        setStatusMessage(message, false)
     }
 
     const extractFaceFromImage = async (image: HTMLImageElement): Promise<CustomBlob[]> => {
@@ -73,12 +74,14 @@ const useFaceExtractor = () => {
         setStatusMessage("searching for faces")
         const predictedFaceDimensions = await predictFaces(image)
 
-        setStatusMessage("x faces found")
+        
+        console.log(predictedFaceDimensions)
 
         const faceImages = []
         for(let i = 0; i < predictedFaceDimensions.length; i++){
 
-            setStatusMessage("extracting face x")
+        
+            setStatusMessage(`extracting face ${i+1}`)
             // crop image
             await cropFace(canvasRef.current, image, predictedFaceDimensions[i])
             
