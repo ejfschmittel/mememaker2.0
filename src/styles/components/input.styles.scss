@@ -23,7 +23,12 @@
         min-width: 1px;
         display: block;
         background: #777;
-        padding: .2rem .3rem
+        padding: .2rem .3rem;
+
+        &:disabled{
+            cursor: not-allowed;
+            
+        }
     }
 
     &__type{

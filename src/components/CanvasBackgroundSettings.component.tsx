@@ -50,8 +50,8 @@ const CanvasBackgroundSettings = () => {
 
             <div className="canvas-settings__controlls">
                 <div className="canvas-settings__dimensions">
-                    <Input suffix="px" label="width" value={width} onChange={onWidthChange} />
-                    <Input suffix="px" label="height" value={height} onChange={onHeightChange} />
+                    <Input suffix="px" label="width" value={width} onChange={onWidthChange} disabled={!!backgroundImage}/>
+                    <Input suffix="px" label="height" value={height} onChange={onHeightChange} disabled={!!backgroundImage}/>
                 </div>
                 <div className="canvas-settings__buttons">
                     

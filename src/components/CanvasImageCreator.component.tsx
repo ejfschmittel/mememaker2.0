@@ -6,21 +6,13 @@ import { createCanvasImage } from "../redux/canvasObjects/canvasObjects.actions"
 import {loadImage} from "../utils/image.utils"
 import { RootState } from '../redux/store';
 import useFaceExtractor from "../hooks/useFaceExtractor"
+import TimeSinceDisplay from "./TimeSinceDisplay.component"
 
 
 import ImageInput from './ImageInput.component';
 
 
-const getTimeSinceInSeconds = (date: Date | null) => {
-    if(!date) return null;
 
-    const delta = Math.floor((new Date().getTime() - date.getTime()) / 1000);
-
-    const minutes = Math.floor(delta / 60) % 60
-    const seconds = delta % 60; 
-
-    return `${('0' + minutes).slice(-2)}:${('0' + seconds).slice(-2)}`
-}
 
 const CanvasTextCreator = () => {
     const dispatch = useDispatch()
@@ -30,18 +22,7 @@ const CanvasTextCreator = () => {
     
     const {canvasRef, status, extractedFaces, extractFaces} = useFaceExtractor();
 
-    const [timeDisplay, setTimeDisplay] = useState("")
-    useEffect(() => {
 
-        const i = setInterval(() => {
-            const tString = getTimeSinceInSeconds(status.time) as string;
-            setTimeDisplay(tString || "")
-        },200)
-
-        return () => {
-            clearInterval(i)
-        } 
-    },[status.time])
    
 
     const onImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +82,8 @@ const CanvasTextCreator = () => {
 
             <div className="image-creator__face-extractor">
                 <div className="image-creator__status">
-                    <div className="image-creator__time">{timeDisplay}</div>
+                    
+                    <TimeSinceDisplay className="image-creator-time" startDate={status.time}/>
                     <div>{status.message}</div>
                 </div>
                 <div className="image-creator__face-list">
