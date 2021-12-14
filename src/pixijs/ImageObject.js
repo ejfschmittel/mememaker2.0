@@ -47,9 +47,19 @@ class ImageObject extends DisplayObject{
         this.sprite.width = object.width;
         this.sprite.height = object.height;
 
+
+        if(object.flipHorizontal){
+            this.sprite.scale.x = Math.abs(this.sprite.scale.x) * -1; 
+            this.sprite.anchor.x = 1;
+        }else{
+            this.sprite.scale.x = Math.abs(this.sprite.scale.x); 
+            this.sprite.anchor.x = 0;
+        }
+      
         this.pivot.set(object.width / 2, object.height / 2)
 
-     
+       
+
     }  
 
     getWidth = () => this.sprite.width;

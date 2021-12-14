@@ -13,18 +13,25 @@
     }
 
     &__container{
-        width: min(100%, 40rem);
-        height: 60vh;
+        width: min(100%, 60rem);
+        height: 70vh;
         background: #333;
         border-radius: 1rem;
-        padding: 0rem .5rem;
+        padding: 1rem 1rem;
         box-shadow: 0 .1rem .3rem rgba(0,0,0,.6);
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        min-height: 34rem;
     }
 
-    &__bar{
-        padding: .3rem 1rem;
+
+    &__header{
+        padding-bottom: .5rem;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: center;
+        color: #ccc;
         border-bottom: 1px solid #aaa;
     }
 
@@ -32,11 +39,12 @@
         background: transparent;
         border: none;
         position: relative;       
-        width: 1.6rem;
-        height: 1.6rem;
+        width: 2.2rem;
+        height: 2.2rem;
         border-radius: 50%;
         cursor: pointer;
         transition: all .3s;
+        background: #444;
 
         svg{
             fill: #fff;
@@ -48,8 +56,9 @@
 
 
         &:hover{
-            background: #555;
-            box-shadow: inset 0 0 .2rem rgba(0,0,0, .5);
+            background: rgb(78, 14, 14);
+            //box-shadow: inset 0 0 .2rem rgba(0,0,0, .5);
+            box-shadow: 0 0rem .3rem rgba(255,255,255,.3);
         }
 
         &:active{
@@ -57,37 +66,12 @@
         }
     }
 
-    &__settings{
-        display: flex;
-        padding: .5rem 0;
-      
-        color: #fff;
-
-        &> *{
-            margin-right: 1rem;
-        }
-    }
-
-    &__template-list{
-        padding: .5rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(4rem,5rem));
-        gap: .5rem;
-        overflow-y: auto;
-    }
-
-    &__template{
-        height: 5rem;
-        background: #eee;
-        background-size: cover;
-        background-position: center center;
-        cursor: pointer;
     
-        transition: all .3s;
-
-        &:hover{
-            transform: scale(1.05);
-        }
+    &__body{
+        flex: 1;
+        width: 100%;
     }
+
+    
 }
 

@@ -2,7 +2,7 @@
 const MEME_TEMPLATES_PATH = process.env.PUBLIC_URL + "/meme_templates/";
 
 
-interface MemeTemplate {
+export interface MemeTemplate {
     name: string,
     path: string
 }

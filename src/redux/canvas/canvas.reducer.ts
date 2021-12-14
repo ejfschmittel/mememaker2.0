@@ -1,4 +1,5 @@
 
+import { type } from "os"
 import types from "./canvas.types"
 
 interface canvasState {
@@ -11,7 +12,8 @@ interface canvasState {
         height: number
     }
     backgroundImage: string | null,
-    showChoseBackgroundOverlay: boolean,    
+    showChoseBackgroundOverlay: boolean, 
+    renderToggle: boolean   
 }
 
 const initalState:canvasState = {
@@ -25,12 +27,16 @@ const initalState:canvasState = {
     },
     backgroundImage: null,
     showChoseBackgroundOverlay: true, 
+    renderToggle: false,
 }
 
 const canvasReducer = (state=initalState, action:any) => {
   
     switch(action.type){
 
+
+        case types.TRIGGER_RERENDER:
+            return {...state, renderToggel: !state.renderToggle}
         
         case types.SET_CANVAS_DIMENSIONS: 
         

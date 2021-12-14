@@ -26,9 +26,17 @@ const CanvasImageEditor = ({activeObject}: Props) => {
         
     }
 
+    const onCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("flip")
+        const {name, value, checked} = e.target as HTMLInputElement;
+       
 
-
-
+        dispatch(updateCanvasObject(activeObject.id, {
+            [name]: checked
+        }))
+        
+        
+    }
 
     return (
         <div className="editor">
@@ -44,6 +52,10 @@ const CanvasImageEditor = ({activeObject}: Props) => {
 
             <div className="editor__row">
                 <Input label="rotation:" suffix="px" value={activeObject.rotation} name="rotation" onChange={onNumberChange} type="number"/>
+            </div>
+
+            <div className="editor__row">
+                <Input label="flip:" suffix="" value={activeObject.flipHorizontal} name="flipHorizontal" onChange={onCheckboxChange} type="checkbox"/>
             </div>
 
          

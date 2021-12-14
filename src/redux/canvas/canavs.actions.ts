@@ -1,5 +1,6 @@
 
 
+import { type } from "os"
 import types from "./canvas.types"
 
 
@@ -11,11 +12,15 @@ export const setCanvasDimensions = (width: number, height:number) => ({
     }
 })
 
-export const setCanvasMaxDimensions = (maxWidth: number, naxHeight:number) => ({
-    type: types.SET_CANVAS_DIMENSIONS,
+export const triggerRerender = () => ({
+    type: types.TRIGGER_RERENDER,
+})
+
+export const setCanvasMaxDimensions = (width: number, height:number) => ({
+    type: types.SET_CANVAS_MAX_DIMENSIONS,
     payload: {
-        maxWidth,
-        naxHeight
+        width,
+        height
     }
 })
 

@@ -1,0 +1,87 @@
+
+@mixin button {
+    font-size: 1rem;
+    padding: .3rem .5rem;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+    transition: all .3s;
+    box-shadow: 0 .1rem .3rem rgba(0,0,0,.6);
+
+    &:hover{
+        background: #252525;
+        box-shadow: 0 0rem .1rem rgba(0,0,0,.4);
+    }
+
+    &:active{
+        background: #444;
+    }
+}
+
+.canvas-settings{
+    
+    display: flex;
+    margin: 1rem 0;
+
+    &__img-container{
+        height: 12rem;
+        width: 12rem;
+        background: #222;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            max-height: 100%;
+            max-width: 100%;     
+        }
+
+        &--clear{
+            background: #fff;
+        }
+    }
+
+    &__controlls{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    &__dimensions{
+        display: flex;
+
+        & > *:not(:first-child){
+            margin-left: 1rem;
+        }
+
+    }
+
+    &__buttons{
+        display: flex;
+        padding: 1rem 0;
+
+        & > *:not(:first-child){
+            margin-left: 1rem;
+        }
+    }
+
+    &__button{
+        @include button;
+    }
+
+    &__image-input{
+       @include button;
+
+
+        input{
+            display: none;
+        }
+    }
+}

@@ -71,6 +71,16 @@ const CanvasTextCreator = () => {
         }
     }
 
+
+    const onAddFaceImage = async (b: Blob, url: string) => {
+
+        dispatch(createCanvasImage({
+            src: url,
+            x: Math.round(dimensions.width / 2),
+            y: Math.round(dimensions.height / 2),
+        }))
+    }
+
     return (
         <div className="image-creator">
 
@@ -98,7 +108,7 @@ const CanvasTextCreator = () => {
                         const url = window.URL.createObjectURL(b);
 
                         return (
-                            <div className="image-creator__face-item">
+                            <div className="image-creator__face-item" onClick={() => onAddFaceImage(b, url)}>
                                <img src={url} />
                             </div>
                         )

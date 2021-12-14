@@ -130,7 +130,7 @@ const removeObject = (id) => {
 }
 
 
-const render = () => {
+export const render = () => {
     if(app) {
     const {canvasObjects, canvas} = store.getState();
 

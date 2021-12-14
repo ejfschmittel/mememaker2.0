@@ -6,12 +6,21 @@ import { setCanvasDimensions, setCanvasBackgroundImage, setShowImageOverlay} fro
 import { RootState } from "../redux/store"
 import {loadImageFromURL} from "../utils/image.utils"
 import PixelInput from "./PixelInput.component";
-
+import Input from "./Input.component"
 import useCanvasLimiter from "../hooks/useCanvasLimiter"
 
 import { MEME_TEMPLATES, getTemplatePath } from "../data/templates"
 
+import CanvasBackgroundSettings from "./CanvasBackgroundSettings.component"
+import CanvasTemplateList from "./CanvasTemplateList.component"
 
+
+/*
+    - remove background (if background)
+    - add/change background ()
+
+    - paginated template list
+*/
 
 
 const CanvasEditorOverlay = () => {
@@ -67,45 +76,18 @@ const CanvasEditorOverlay = () => {
     return (
         <div className={`canvas-editor ${show ? "" : "canvas-editor--closed"}`}>
             <div className="canvas-editor__container">
-                <div className="canvas-editor__bar">
+                <header className="canvas-editor__header">
+                    <h3>Canvas Settings</h3>
                     <button className="canvas-editor__close" onClick={onClose}>
                         <FaTimes />
                     </button>
+                </header>
+
+                <div className="canvas-editor__body">
+                    <CanvasBackgroundSettings />
+                    <CanvasTemplateList />
                 </div>
-
-                <div className="canvas-editor__settings">
-
-
-                    <div className="form-input">
-                        <label>Width: </label>
-                        <PixelInput value={width} onChange={onWidthChange} disabled={!canEditDimensions} />
-                    </div>
-                    <div className="form-input">
-                        <label>Height: </label>
-                        <PixelInput value={height} onChange={onHeightChange} disabled={!canEditDimensions} />
-                    </div>
-
-                </div>
-
-                <div className="canvas-editor__templates">
-                    <div className="canvas-editor__template-search">
-                        <input />
-                    </div>
-                    <div className="canvas-editor__template-list">
-                        {MEME_TEMPLATES.map(template => {
-                            const templatePath = getTemplatePath(template)
-
-                            return (
-                                <div
-                                    className="canvas-editor__template"
-                                    key={template.path}
-                                    onClick={() => onImageClick(templatePath)}
-                                    style={{ backgroundImage: `url('${templatePath}')` }} title={template.name || template.path}>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
+                
             </div>
         </div>
     )

@@ -64,7 +64,7 @@ const useFaceExtractor = () => {
         // extract faces
         const faces = await extractFaceFromImage(image)
         setExtractedFaces(faces)
-        const message = faces.length > 0 ? "Face Extraction Successfull" : "No Faces Found";
+        const message = faces.length > 0 ? "Extracted Faces" : "No Faces Found";
         setStatusMessage(message, false)
     }
 

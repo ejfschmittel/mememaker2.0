@@ -47,7 +47,8 @@
         background: #aaa;
         border-radius: 5px;
         position: relative;
-  
+        cursor: pointer;
+        border: 1px solid #eee;
 
         img{
             max-height: 100%;
@@ -61,13 +62,20 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,.8);
+            background: rgba(0,0,0,.5);
             display: flex;
             justify-content: center;
             align-items: center;
             color: #fff;
             transition: all .3s;
+           
+            border-radius: 5px;
             opacity: 0;
+          
+        }
+
+        &:hover::after{
+            opacity: 1;
         }
 
        

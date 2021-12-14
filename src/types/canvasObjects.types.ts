@@ -8,6 +8,8 @@ export interface CanvasObjectBase {
     rotation: number,
     width: number,
     height: number,
+    flipHorizontal: boolean,
+    flipVertical: boolean
 }
 
 export interface ImageCanvasObject extends CanvasObjectBase{
