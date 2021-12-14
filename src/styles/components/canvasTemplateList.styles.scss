@@ -21,7 +21,10 @@
     &__items{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(80px, 120px));
-        gap: .5rem
+        gap: .5rem;
+        height: 260px;
+        overflow: hidden;
+        position: relative;
     }
 
     &__item{
@@ -64,5 +67,52 @@
         &:active{
 
         }
+    }
+
+    &__pagination{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: .5rem;
+    }
+
+    &__page-icon{
+        display: flex;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background: #222;
+        color: #fff;
+        position: relative;
+        cursor: pointer;
+        margin: 0 .2rem;
+        user-select: none;
+
+        &--active{
+            background: #555;
+        }
+
+        &:hover{
+            background: #555;
+        }
+        
+        span{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    &__message{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

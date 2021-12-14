@@ -83,7 +83,7 @@ const CanvasTextCreator = () => {
             <div className="image-creator__face-extractor">
                 <div className="image-creator__status">
                     
-                    <TimeSinceDisplay className="image-creator-time" startDate={status.time}/>
+                    <TimeSinceDisplay className="image-creator__time" startDate={status.time}/>
                     <div>{status.message}</div>
                 </div>
                 <div className="image-creator__face-list">

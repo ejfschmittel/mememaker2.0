@@ -21,6 +21,62 @@ export const MEME_TEMPLATES: MemeTemplate[] = [
         name: "",
         path: "DistractedBoyfriend.png"
     },
+    {
+        name: "",
+        path: "BatmanSlappingRobin.png"
+    },
+    {
+        name: "",
+        path: "BernieSupport.png"
+    },
+    {
+        name: "",
+        path: "BikeFall.png"
+    },
+    {
+        name: "",
+        path: "BuffDogeVS.png"
+    },
+    {
+        name: "",
+        path: "Draw25.png"
+    },
+    {
+        name: "",
+        path: "EpicHandshaker.png"
+    },
+    {
+        name: "",
+        path: "ExpandingBrain.png"
+    },
+    {
+        name: "",
+        path: "GrusPlan.png"
+    },
+    {
+        name: "",
+        path: "IsThisAPigeon.png"
+    },
+    {
+        name: "",
+        path: "LeftExitOffRamp.png"
+    },
+    {
+        name: "",
+        path: "MockingSpongebob.png"
+    },
+    {
+        name: "",
+        path: "OneDoesNotSimply.png"
+    },
+    {
+        name: "",
+        path: "RunningAwayBalloon.png"
+    },
+    {
+        name: "",
+        path: "SadPabloEscobar.png"
+    },
 ]
 
 

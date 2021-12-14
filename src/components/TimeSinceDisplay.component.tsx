@@ -34,7 +34,7 @@ const TimeSinceDisplay = ({className, startDate, refreshRate}: Props & typeof de
 
 
     return (
-        <div>
+        <div className={className}>
             {timeString}
         </div>
     )
