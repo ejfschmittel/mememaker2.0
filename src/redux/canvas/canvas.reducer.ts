@@ -48,6 +48,9 @@ const canvasReducer = (state=initalState, action:any) => {
         case types.SET_CANVAS_MAX_DIMENSIONS:
             return {...state, maxDimensions: action.payload }
 
+        case types.CLEAR_CANVAS:
+            return {...state, backgroundImage: null}
+
         case types.SET_SHOW_IMAGE_OVERLAY:
             console.log("change show")
             return {...state, showChoseBackgroundOverlay: action.payload}

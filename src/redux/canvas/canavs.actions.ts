@@ -33,6 +33,10 @@ export const setCanvasBackgroundImage = (image: string, width: number, height:nu
     }
 })
 
+export const clearCanvasBackground = () => ({
+    type: types.CLEAR_CANVAS,
+})
+
 export const setShowImageOverlay = (show:boolean) => ({
     type: types.SET_SHOW_IMAGE_OVERLAY,
     payload: show

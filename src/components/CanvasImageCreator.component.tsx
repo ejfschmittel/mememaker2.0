@@ -7,6 +7,7 @@ import {loadImage} from "../utils/image.utils"
 import { RootState } from '../redux/store';
 import useFaceExtractor from "../hooks/useFaceExtractor"
 
+
 import ImageInput from './ImageInput.component';
 
 
@@ -23,6 +24,7 @@ const getTimeSinceInSeconds = (date: Date | null) => {
 
 const CanvasTextCreator = () => {
     const dispatch = useDispatch()
+    
     const dimensions = useSelector((state: RootState) => state.canvas.dimensions)
     const [image, setImage] = useState<HTMLImageElement | undefined>(undefined)
     
