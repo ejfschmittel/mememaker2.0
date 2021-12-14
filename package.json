@@ -1,8 +1,7 @@
 {
-  "name": "memaker",
+  "name": "memeaker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ejfschmittel.github.io/mememaker2.0/",
   "dependencies": {
     "@tensorflow-models/blazeface": "^0.0.7",
     "@tensorflow-models/body-pix": "^2.2.0",
@@ -35,7 +34,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "echo mememaker.eliasschmittel.com > ./build/CNAME && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
