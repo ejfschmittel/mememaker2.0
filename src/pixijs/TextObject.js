@@ -16,6 +16,9 @@ class TextObject extends DisplayObject{
         this.background.endFill()
 
         this.mask = this.background;
+
+        this.updateObject(object)
+        
         this.addChild(this.background, this.text);
     }
 
@@ -36,6 +39,8 @@ class TextObject extends DisplayObject{
 
         this.pivot.set(object.width / 2, object.height / 2)
      }   
+
+   
 }
 
 export default TextObject;

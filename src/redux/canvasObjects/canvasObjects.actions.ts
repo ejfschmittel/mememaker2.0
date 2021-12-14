@@ -1,5 +1,5 @@
 import types from "./canvasObjects.types"
-import {CanvasObject} from "../../types/canvasObjects.types"
+import {CanvasObject, TextCanvasObject} from "../../types/canvasObjects.types"
 import {createTextCanvasObject, createImageCanvasObject} from "../../pixijs/pixijs.utils"
 import {createDisplayObject} from "../../pixijs/App"
 import store, {AppDispatch, RootState} from "../store"
@@ -18,9 +18,19 @@ export const createCanvasText= (options: any) => async (dispatch:AppDispatch) =>
     const canvasTextOptions = createTextCanvasObject(options)
     const canvasText = await createDisplayObject(canvasTextOptions)
 
+
+    console.log("create text")
+    console.log(canvasText)
+    
+        
+
     // get width & height
     canvasTextOptions.width = canvasText?.getWidth() || 100;
     canvasTextOptions.height = canvasText?.getHeight() || 100; 
+
+    console.log("canvasText width")
+    console.log(canvasText?.getWidth())
+ 
 
     dispatch(createCanvasObject(canvasTextOptions))
 }
