@@ -29,10 +29,23 @@ const CanvasTextCreator = () => {
         console.log("load image")
         const target = e.target as HTMLInputElement;
         if(target && target.files){
-            const loadedImage = await loadImage(target.files[0]);
-            console.log(loadedImage)
-            setImage(loadedImage)
+            loadAndSetImage(target.files[0])
         }
+    }
+
+    const onImageDrop = async (e: React.DragEvent) => {
+        e.preventDefault()
+        e.stopPropagation();
+
+        const file = e.dataTransfer.files[0];
+        loadAndSetImage(file)
+   
+    }
+
+    const loadAndSetImage = async (image: File) => {
+        const loadedImage = await loadImage(image);
+        console.log(loadedImage)
+        setImage(loadedImage)
     }
 
 
@@ -67,7 +80,7 @@ const CanvasTextCreator = () => {
     return (
         <div className="image-creator">
 
-            <ImageInput image={image} onChange={onImageChange} />
+            <ImageInput image={image} onChange={onImageChange} onDrop={onImageDrop}/>
 
 
             <RainbowButton className="rainbow-button--fullsize mt" onClick={onAddImage} disabled={!image}>
