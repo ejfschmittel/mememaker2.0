@@ -15,7 +15,7 @@ class BackgroundImage extends PIXI.Container{
         this.sprite = null;
 
         this.background = new PIXI.Graphics();
-        this.background.beginFill(0xff0000);
+        this.background.beginFill(0xffffff);
         this.background.drawRect(0,0,600, 400);
         this.background.endFill()
 

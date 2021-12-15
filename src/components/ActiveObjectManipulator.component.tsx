@@ -56,6 +56,7 @@ const ActiveObjectManipulator = ({ container }: Props) => {
     }
 
     const onDragStart = (e: React.MouseEvent) => {
+    
         if (container) {
             const bounds = container.current.getBoundingClientRect();
 
@@ -69,10 +70,14 @@ const ActiveObjectManipulator = ({ container }: Props) => {
         }
     }
 
-    const onDragFinish = () => {
+    const onDragFinish = (e: React.MouseEvent) => {
         setDragging(false)
     }
 
+
+    const cancelDrag = (e: React.MouseEvent) => {
+        e.preventDefault()
+    }
 
 
     return (
@@ -89,7 +94,11 @@ const ActiveObjectManipulator = ({ container }: Props) => {
         >
 
             <div className="active-object__content"
+                onDragEnter={cancelDrag}
+                onDragEnd={cancelDrag}
                 onPointerDown={onDragStart}
+                onDragOver={onDragStart}
+                onDragLeave={cancelDrag}
                 onPointerUp={onDragFinish}
             ></div>
 
@@ -149,12 +158,14 @@ const RotationHandle = ({activeObject, container}: RotationHandleProps) => {
         }
     }
     
-    const onDragStart = () => {
+    const onDragStart = (e: React.MouseEvent) => {
+      
         setDragging(true)
         document.body.style.cursor = "grabbing" 
     }
 
-    const dragEnd = () => {
+    const dragEnd = (e: MouseEvent) => {
+      
         setDragging(false)
         document.body.style.cursor = "default" 
     }
@@ -251,12 +262,19 @@ const DragHandle = ({ x, y, cursor, size, container, activeObject }: DragHandleP
         }
     }
 
+    const cancelDrag = (e: React.MouseEvent) => e.preventDefault()
 
     const offset = (-size / 2) - 1;
 
     return (
         <div className="active-object__handle"
             onPointerDown={onDragStart}
+            onDragEnter={cancelDrag}
+            onDragOver={cancelDrag}
+            onDragEnd={cancelDrag}
+            onDragLeave={cancelDrag}
+            onPointerUp={dragEnd}
+    
             style={{
                 width: size,
                 height: size,

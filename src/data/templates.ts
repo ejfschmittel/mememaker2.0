@@ -77,7 +77,63 @@ export const MEME_TEMPLATES: MemeTemplate[] = [
         name: "",
         path: "SadPabloEscobar.png"
     },
+    {
+        name: "",
+        path: "TheyAreTheSamePicture.png"
+    },
+    {
+        name: "",
+        path: "TradeOffer.png"
+    },
+    {
+        name: "",
+        path: "ThinkAboutIt.png"
+    },
+    {
+        name: "",
+        path: "ThisIsFine.png"
+    },
+    {
+        name: "",
+        path: "SuprisedPikachu.png"
+    },
+    {
+        name: "",
+        path: "LaughingLeo.png"
+    },
+    {
+        name: "",
+        path: "ThisIsWhereIdPutMyTrophyIfIHadOne.png"
+    },
+    {
+        name: "",
+        path: "FuturamaFry.png"
+    },
+    {
+        name: "",
+        path: "YallGotAnyMoreOfThat.png"
+    },
+    {
+        name: "",
+        path: "Drake.png"
+    },
+
+    {
+        name: "",
+        path: "SquidwardWindow.png"
+    },
+    {
+        name: "",
+        path: "TwoSpiderman.png"
+    },
+    {
+        name: "",
+        path: "SpongebobBurningPaper.png"
+    },
+
+    
 ]
+
 
 
 export const getTemplatePath = (template: MemeTemplate) => {

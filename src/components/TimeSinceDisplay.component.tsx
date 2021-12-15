@@ -24,7 +24,7 @@ const getCurrentDateString = (startDate: Date) => {
 
 const TimeSinceDisplay = ({className, startDate, refreshRate}: Props & typeof defaultProps) => {
 
-    const [timeString, setTimeString] = useState("00:00");
+    const [timeString, setTimeString] = useState("");
 
     useInterval(() => {
         console.log("interval")
